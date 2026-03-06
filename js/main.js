@@ -82,27 +82,42 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Animate elements on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '50px' });
+    // Animate elements on scroll (with feature detection)
+    try {
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-in');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05, rootMargin: '50px' });
 
-    document.querySelectorAll('.tool-card, .blog-card, .feature-card').forEach(el => {
-      el.classList.add('animate-ready');
-      observer.observe(el);
-    });
+        document.querySelectorAll('.tool-card, .blog-card, .feature-card').forEach(el => {
+          el.classList.add('animate-ready');
+          observer.observe(el);
+        });
 
-    // Fallback: show everything after 1s in case observer doesn't fire
-    setTimeout(() => {
-      document.querySelectorAll('.animate-ready:not(.animate-in)').forEach(el => {
+        // Fallback: show everything after 1s in case observer doesn't fire
+        setTimeout(() => {
+          document.querySelectorAll('.animate-ready:not(.animate-in)').forEach(el => {
+            el.classList.add('animate-in');
+          });
+        }, 1000);
+      } else {
+        // No IntersectionObserver support — animate everything immediately
+        document.querySelectorAll('.tool-card, .blog-card, .feature-card').forEach(el => {
+          el.classList.add('animate-ready', 'animate-in');
+        });
+      }
+    } catch (err) {
+      console.warn('[AI Clubhouse] Animation error:', err);
+      // Ensure content is visible even if animation fails
+      document.querySelectorAll('.animate-ready').forEach(el => {
         el.classList.add('animate-in');
       });
-    }, 1000);
+    }
 
     // Header scroll effect
     const header = document.querySelector('.site-header');
