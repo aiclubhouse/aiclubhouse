@@ -31,14 +31,13 @@
     }
   }
   </script>
-  <!-- Google Analytics placeholder -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYSW6SXL58"></script>
   <script>
-    // Dummy gtag function to avoid errors before Google Analytics is installed
-    window.gtag = window.gtag || function() {
-      if (window.console && window.console.warn) {
-        console.warn('[AI Clubhouse] Google Analytics not configured');
-      }
-    };
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RYSW6SXL58');
   </script>
 </head>
 <body>
