@@ -3,37 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Market Odds Alpha — High‑Edge Prediction Markets | AI Clubhouse</title>
-  <meta name="description" content="Real‑time high‑edge picks from Kalshi prediction markets. Free delayed alerts. Subscribe for premium real‑time alerts.">
-  <meta property="og:title" content="Market Odds Alpha — High‑Edge Prediction Markets">
-  <meta property="og:description" content="Get actionable picks with statistical edge in prediction markets. Free delayed alerts, premium real‑time.">
+  <title>Market Odds Alpha — Trend Intelligence for ASX, Stocks & Crypto | AI Clubhouse</title>
+  <meta name="description" content="AI-powered trend detection. Spot what's trending online before the market moves. ASX, US stocks, and cryptocurrency signals.">
+  <meta property="og:title" content="Market Odds Alpha — Trend Intelligence">
+  <meta property="og:description" content="Spot trending topics before markets move. AI scans Reddit, Google Trends & news to find early signals in ASX, stocks, and crypto.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aiclubhouse.com.au/market-odds">
-  <meta property="og:image" content="https://aiclubhouse.com.au/img/market-odds-og.png">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://aiclubhouse.com.au/market-odds">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .picks-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
-    .picks-table th { background: var(--bg-secondary); text-align: left; padding: 1rem; font-size: 0.9rem; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
-    .picks-table td { padding: 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
-    .edge-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; }
-    .edge-high { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-    .edge-medium { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .action-buy { color: #10b981; font-weight: 700; }
-    .action-sell { color: #ef4444; font-weight: 700; }
-    .confidence-high { color: #10b981; }
-    .confidence-medium { color: #f59e0b; }
-    .confidence-low { color: #ef4444; }
-    .refresh-info { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; }
+    :root {
+      --early: #10b981;
+      --emerging: #f59e0b;
+      --moving: #f97316;
+      --late: #ef4444;
+    }
+    .hero-market { background: linear-gradient(135deg, #0a0e17 0%, #0f172a 50%, #1a1a2e 100%); border-bottom: 1px solid var(--border); padding: 6rem 0 4rem; }
+    .hero-market h1 { font-size: 3.2rem; line-height: 1.2; margin-bottom: 1rem; }
+    .hero-market .subtitle { font-size: 1.2rem; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
+    .hero-stats { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: 2.5rem; font-weight: 800; }
+    .hero-stat .label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+    .stat-early { color: var(--early); }
+    .stat-emerging { color: var(--emerging); }
+    .stat-total { color: #8b5cf6; }
+
+    .signal-grid { display: grid; gap: 1rem; margin: 2rem 0; }
+    .signal-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; transition: transform 0.15s, box-shadow 0.15s; }
+    .signal-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .signal-card.early { border-left: 4px solid var(--early); }
+    .signal-card.emerging { border-left: 4px solid var(--emerging); }
+    .signal-card.moving { border-left: 4px solid var(--moving); }
+    .signal-card.late { border-left: 4px solid var(--late); }
+
+    .signal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .signal-ticker { font-size: 1.3rem; font-weight: 800; letter-spacing: 0.02em; }
+    .signal-badge { display: inline-block; padding: 0.2rem 0.75rem; border-radius: 100px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-early { background: rgba(16,185,129,0.15); color: var(--early); border: 1px solid rgba(16,185,129,0.3); }
+    .badge-emerging { background: rgba(245,158,11,0.15); color: var(--emerging); border: 1px solid rgba(245,158,11,0.3); }
+    .badge-moving { background: rgba(249,115,22,0.15); color: var(--moving); border: 1px solid rgba(249,115,22,0.3); }
+    .badge-late { background: rgba(239,68,68,0.15); color: var(--late); border: 1px solid rgba(239,68,68,0.3); }
+
+    .signal-topic { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.5; }
+    .signal-metrics { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; }
+    .metric { display: flex; flex-direction: column; }
+    .metric-label { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric-value { font-weight: 600; margin-top: 0.15rem; }
+    .metric-positive { color: var(--early); }
+    .metric-negative { color: var(--late); }
+    .metric-neutral { color: var(--text-secondary); }
+
+    .signal-source { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; }
+    .signal-source a { color: var(--accent, #8b5cf6); text-decoration: none; }
+    .signal-source a:hover { text-decoration: underline; }
+
+    .how-it-works { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .step-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .step-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .step-title { font-weight: 700; margin-bottom: 0.5rem; }
+    .step-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .refresh-info { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
     .picks-loading { text-align: center; padding: 3rem; color: var(--text-secondary); }
-    .hero-market { background: linear-gradient(135deg, #0a0e17, #111827); border-bottom: 1px solid var(--border); padding: 6rem 0 4rem; }
-    .hero-market h1 { font-size: 3.5rem; line-height: 1.2; }
+
+    .disclaimer { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+    .disclaimer h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .disclaimer p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
     @media (max-width: 768px) {
-      .hero-market h1 { font-size: 2.5rem; }
-      .picks-table { font-size: 0.9rem; }
-      .picks-table th, .picks-table td { padding: 0.75rem 0.5rem; }
+      .hero-market h1 { font-size: 2.2rem; }
+      .hero-stats { gap: 1.5rem; }
+      .hero-stat .num { font-size: 2rem; }
+      .signal-metrics { gap: 1rem; }
     }
   </style>
 </head>
@@ -48,7 +92,6 @@
         <li><a href="/#tools">AI Tools</a></li>
         <li><a href="/#blog">Blog</a></li>
         <li><a href="/market-odds" class="active">Market Odds Alpha</a></li>
-        <li><a href="#subscribe" class="nav-cta">Get Alerts →</a></li>
       </ul>
     </div>
   </header>
@@ -56,216 +99,215 @@
   <!-- ═══ HERO ═══ -->
   <section class="hero-market">
     <div class="container">
-      <div class="hero-badge">🎯 High‑Edge Prediction Markets</div>
-      <h1>
-        Market Odds <span class="gradient-text">Alpha</span>
-      </h1>
-      <p style="max-width: 700px; margin: 1.5rem auto 2rem; font-size: 1.25rem;">
-        Real‑time picks from Kalshi prediction markets with statistical edge. 
-        <strong>Free delayed alerts</strong> below. Subscribe for <strong>real‑time premium alerts</strong>.
+      <h1>📡 Trend Intelligence</h1>
+      <p class="subtitle">
+        AI scans Reddit, Google Trends, and financial news to detect what's trending online
+        <strong>before the market price moves</strong>. Covering ASX, US stocks, and crypto.
       </p>
-      <div class="hero-actions">
-        <a href="#picks" class="btn-primary">📊 View Live Picks</a>
-        <a href="#subscribe" class="btn-secondary">🔔 Get Real‑Time Alerts</a>
-      </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="number">37.5%</div>
-          <div class="label">Highest Edge Today</div>
+          <div class="num stat-early" id="stat-early">—</div>
+          <div class="label">Early Signals</div>
         </div>
         <div class="hero-stat">
-          <div class="number">4</div>
-          <div class="label">High‑Edge Picks</div>
+          <div class="num stat-emerging" id="stat-emerging">—</div>
+          <div class="label">Emerging</div>
         </div>
         <div class="hero-stat">
-          <div class="number">Delayed</div>
-          <div class="label">Free Feed</div>
+          <div class="num stat-total" id="stat-total">—</div>
+          <div class="label">Total Signals</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ PICKS TABLE ═══ -->
-  <section class="section" id="picks">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag">📈 Live Picks</div>
-        <h2>High‑Edge Opportunities</h2>
-        <p>Updated every 30 minutes. Edge = statistical advantage over market‑implied probability.</p>
-        <div class="refresh-info">
-          🔄 Last updated: <span id="last-updated">Loading…</span> • Next refresh: <span id="next-refresh">—</span>
-        </div>
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="container" style="padding-top: 3rem;">
+    <h2 style="text-align:center; margin-bottom:0.5rem;">How It Works</h2>
+    <p style="text-align:center; color:var(--text-secondary); margin-bottom:2rem;">Detect the signal. Map the asset. Catch the move early.</p>
+    <div class="how-it-works">
+      <div class="step-card">
+        <div class="step-icon">🔍</div>
+        <div class="step-title">1. Scan Trends</div>
+        <div class="step-desc">AI monitors Reddit, Google Trends, and news 24/7 for spiking topics related to stocks, crypto, and commodities.</div>
       </div>
-
-      <div id="picks-container">
-        <div class="picks-loading">
-          <div style="margin-bottom:1rem;">⏳ Loading live picks…</div>
-          <small>If this takes too long, the API may be offline. Check back soon.</small>
-        </div>
+      <div class="step-card">
+        <div class="step-icon">🎯</div>
+        <div class="step-title">2. Map to Markets</div>
+        <div class="step-desc">Trending topics are matched to real tickers — ASX stocks, US equities, ETFs, and cryptocurrencies.</div>
       </div>
-
-      <div style="margin-top: 3rem; padding: 2rem; background: var(--bg-secondary); border-radius: var(--radius); border: 1px solid var(--border);">
-        <h3>⚠️ Important Disclaimer</h3>
-        <p style="margin-top: 0.5rem; font-size: 0.95rem;">
-          This is <strong>not financial advice</strong>. Prediction markets involve risk. Past performance does not guarantee future results. 
-          Edge calculations are based on publicly available data and probabilistic models. Always do your own research.
-          <br><br>
-          <strong>Free tier:</strong> Delayed picks (30‑minute delay). <strong>Premium tier:</strong> Real‑time alerts via Telegram.
-        </p>
+      <div class="step-card">
+        <div class="step-icon">📊</div>
+        <div class="step-title">3. Check the Price</div>
+        <div class="step-desc">We check if the asset has already moved. <strong>EARLY</strong> signals mean the topic is hot but the price hasn't reacted yet.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">🚀</div>
+        <div class="step-title">4. Get In First</div>
+        <div class="step-desc">Act on early signals before the crowd arrives. That gap between trending online and price movement — that's the alpha.</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ SUBSCRIBE ═══ -->
-  <section class="section newsletter-section" id="subscribe">
-    <div class="newsletter-inner">
-      <h2>🔔 Get Real‑Time Alerts</h2>
-      <p>Subscribe to the <strong>Market Odds Alpha</strong> Telegram channel for real‑time alerts when edge >15%.</p>
-      <p style="font-size:0.95rem; margin-bottom: 1.5rem;">
-        📱 Join the free public channel for delayed alerts, or subscribe to premium for instant notifications.
+  <!-- ═══ LIVE SIGNALS ═══ -->
+  <section class="container" style="padding: 3rem 0;">
+    <h2>🔔 Live Signals</h2>
+    <p class="refresh-info">
+      Last updated: <strong id="last-updated">loading…</strong>
+      &nbsp;·&nbsp; Refreshed every 30 minutes
+    </p>
+
+    <div id="signals-container">
+      <div class="picks-loading">
+        <div style="font-size:2rem; margin-bottom:1rem;">📡</div>
+        <div>⏳ Loading live signals…</div>
+        <small style="color:var(--text-muted); margin-top:0.5rem; display:block;">
+          If this takes too long, the feed may be updating. Check back soon.
+        </small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DISCLAIMER ═══ -->
+  <section class="container" style="padding-bottom: 3rem;">
+    <div class="disclaimer">
+      <h3>⚠️ Important Disclaimer</h3>
+      <p>
+        This is <strong>not financial advice</strong>. Market Odds Alpha detects trending topics and maps them to assets — it does not predict price movements.
+        Trend signals are based on publicly available social media, search, and news data. Markets are unpredictable; always do your own research.
+        Past trend correlations do not guarantee future price movements.
       </p>
-      <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
-        <a href="https://t.me/marketoddsalpha" class="btn-primary" target="_blank" style="padding: 1rem 2rem; font-size: 1.1rem;">📢 Join Free Channel</a>
-        <a href="#premium" class="btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem;">🚀 Premium (Coming Soon)</a>
+    </div>
+
+    <div style="text-align:center; margin-top:3rem; padding:2rem; background:var(--bg-secondary); border-radius:12px; border:1px solid var(--border);">
+      <h3>🔔 Get Real‑Time Alerts</h3>
+      <p style="color:var(--text-secondary); margin:0.75rem 0 1.5rem;">
+        Subscribe to Market Odds Alpha Telegram for instant EARLY signals when they drop.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; max-width:450px; margin:0 auto;">
+        <input type="email" id="email-input" placeholder="your@email.com" 
+               style="flex:1; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg-primary); color:var(--text-primary); font-size:1rem; min-width:200px;">
+        <button onclick="subscribeEmail()" 
+                style="padding:0.75rem 1.5rem; background:var(--early); color:#000; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:1rem;">
+          Notify Me
+        </button>
       </div>
-      <div class="newsletter-form">
-        <input type="email" placeholder="Enter email for launch notification" id="email-input">
-        <button onclick="subscribeEmail()">Notify Me →</button>
-      </div>
-      <div class="newsletter-note">We'll email when premium launches. No spam, unsubscribe anytime.</div>
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.75rem;">
+        We'll email when premium launches. No spam, unsubscribe anytime.
+      </p>
     </div>
   </section>
 
   <!-- ═══ FOOTER ═══ -->
   <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="nav-brand"><img src="/img/logo.svg" alt="AI Clubhouse" height="40"></a>
-        <p>Australia's trusted AI community hub. Market Odds Alpha is a product of AI Clubhouse.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Market Odds</h4>
-        <ul>
-          <li><a href="#picks">Live Picks</a></li>
-          <li><a href="#subscribe">Get Alerts</a></li>
-          <li><a href="#disclaimer">Disclaimer</a></li>
-          <li><a href="/affiliate-disclosure">Affiliate Disclosure</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>AI Clubhouse</h4>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#tools">AI Tools</a></li>
-          <li><a href="/#blog">Blog</a></li>
-          <li><a href="/about">Community</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="/privacy">Privacy Policy</a></li>
-          <li><a href="/terms">Terms of Service</a></li>
-          <li><a href="/affiliate-disclosure">Affiliate Disclosure</a></li>
-          <li><a href="#disclaimer">Trading Disclaimer</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 AI Clubhouse. Market Odds Alpha. Not financial advice.</div>
-      <div>
-        Data provided by Kalshi & Open‑Meteo. Edge calculations are probabilistic estimates.
-      </div>
+    <div class="container" style="text-align:center; padding:2rem 0; border-top:1px solid var(--border);">
+      <p style="color:var(--text-muted); font-size:0.85rem;">
+        © 2026 AI Clubhouse. All rights reserved. &nbsp;·&nbsp;
+        <a href="/affiliate-disclosure" style="color:var(--text-muted);">Affiliate Disclosure</a> &nbsp;·&nbsp;
+        <a href="/privacy" style="color:var(--text-muted);">Privacy</a>
+      </p>
     </div>
   </footer>
 
   <script>
-    async function loadPicks() {
-      const container = document.getElementById('picks-container');
-      const updatedSpan = document.getElementById('last-updated');
+    async function loadSignals() {
+      const container = document.getElementById('signals-container');
+      const updatedEl = document.getElementById('last-updated');
       
       try {
-        // Static JSON file updated every 30 minutes
-        const response = await fetch('/data/market-odds-picks.json');
-        if (!response.ok) throw new Error('API error');
-        const data = await response.json();
-        
-        if (!data.picks || data.picks.length === 0) {
-          container.innerHTML = '<div class="picks-loading">No picks available right now. Check back later.</div>';
+        const resp = await fetch('/data/market-odds-picks.json');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+
+        // Update stats
+        const picks = data.picks || [];
+        const earlyCount = picks.filter(p => p.signal_quality === 'EARLY').length;
+        const emergingCount = picks.filter(p => p.signal_quality === 'EMERGING').length;
+        document.getElementById('stat-early').textContent = earlyCount;
+        document.getElementById('stat-emerging').textContent = emergingCount;
+        document.getElementById('stat-total').textContent = picks.length;
+
+        // Update timestamp
+        const updated = data.updated ? new Date(data.updated).toLocaleString() : 'Unknown';
+        updatedEl.textContent = updated;
+
+        if (!picks.length) {
+          container.innerHTML = '<div class="picks-loading"><div>No signals right now. Check back soon.</div></div>';
           return;
         }
-        
-        // Format updated time
-        const updated = data._updated ? new Date(data._updated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Just now';
-        updatedSpan.textContent = updated;
-        
-        // Calculate next refresh (30 minutes later)
-        const next = new Date(Date.now() + 30 * 60000);
-        document.getElementById('next-refresh').textContent = next.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        
-        // Build table
-        let html = `
-          <table class="picks-table">
-            <thead>
-              <tr>
-                <th>Ticker</th>
-                <th>Action</th>
-                <th>Edge</th>
-                <th>Confidence</th>
-                <th>Market Price</th>
-                <th>Max Profit</th>
-              </tr>
-            </thead>
-            <tbody>`;
-        
-        data.picks.forEach(pick => {
-          const edgeNum = parseFloat(pick.edge.replace('%', ''));
-          const edgeClass = edgeNum > 20 ? 'edge-high' : 'edge-medium';
-          const actionClass = pick.action.includes('BUY') ? 'action-buy' : 'action-sell';
-          const confClass = pick.confidence === 'HIGH' ? 'confidence-high' : 
-                          pick.confidence === 'MEDIUM' ? 'confidence-medium' : 'confidence-low';
-          
+
+        // Build signal cards
+        let html = '<div class="signal-grid">';
+        picks.forEach(pick => {
+          const badge = pick.badge || 'late';
+          const dayChange = parseFloat(pick.day_change) || 0;
+          const weekChange = parseFloat(pick.week_change) || 0;
+          const dayClass = dayChange > 0 ? 'metric-positive' : dayChange < 0 ? 'metric-negative' : 'metric-neutral';
+          const weekClass = weekChange > 0 ? 'metric-positive' : weekChange < 0 ? 'metric-negative' : 'metric-neutral';
+
           html += `
-            <tr>
-              <td>
-                <strong>${pick.ticker}</strong><br>
-                <small style="color:var(--text-muted)">${pick.title.replace('**', '')}</small>
-              </td>
-              <td><span class="${actionClass}">${pick.action}</span></td>
-              <td><span class="edge-badge ${edgeClass}">${pick.edge}</span></td>
-              <td><span class="${confClass}">${pick.confidence}</span></td>
-              <td><code>${pick.market_price}</code></td>
-              <td><strong>${pick.max_profit}</strong></td>
-            </tr>`;
+            <div class="signal-card ${badge}">
+              <div class="signal-header">
+                <span class="signal-ticker">${pick.ticker}</span>
+                <span class="signal-badge badge-${badge}">${pick.signal_quality}</span>
+              </div>
+              <div class="signal-topic">📌 ${pick.topic}</div>
+              <div class="signal-metrics">
+                <div class="metric">
+                  <span class="metric-label">Price</span>
+                  <span class="metric-value">$${pick.price ? pick.price.toLocaleString() : '—'}</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Day</span>
+                  <span class="metric-value ${dayClass}">${pick.day_change}</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Week</span>
+                  <span class="metric-value ${weekClass}">${pick.week_change}</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Trend</span>
+                  <span class="metric-value">${pick.trend_strength ? pick.trend_strength.toFixed(1) + 'x' : '—'}</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Volume</span>
+                  <span class="metric-value">${pick.volume_signal || '—'}</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Confidence</span>
+                  <span class="metric-value">${pick.confidence}</span>
+                </div>
+              </div>
+              <div class="signal-source">
+                Source: ${pick.source}${pick.source_url ? ' · <a href="' + pick.source_url + '" target="_blank" rel="noopener">View →</a>' : ''}
+              </div>
+            </div>`;
         });
-        
-        html += `</tbody></table>`;
+        html += '</div>';
         container.innerHTML = html;
-        
+
       } catch (error) {
-        console.error('Failed to load picks:', error);
+        console.error('Failed to load signals:', error);
         container.innerHTML = `
           <div class="picks-loading">
-            <div style="margin-bottom:1rem;">⚠️ Could not load live picks</div>
-            <small>API is temporarily unavailable. Free delayed picks will appear here soon.</small>
+            <div style="margin-bottom:1rem;">⚠️ Could not load signals</div>
+            <small>Feed is temporarily unavailable. Check back soon.</small>
           </div>`;
-        updatedSpan.textContent = 'Offline';
+        updatedEl.textContent = 'Offline';
       }
     }
-    
+
     function subscribeEmail() {
       const email = document.getElementById('email-input').value;
       if (!email || !email.includes('@')) {
         alert('Please enter a valid email address.');
         return;
       }
-      // In production, send to your backend
       alert('Thanks! We\'ll notify you when premium launches.');
       document.getElementById('email-input').value = '';
     }
-    
-    // Load picks on page load
-    document.addEventListener('DOMContentLoaded', loadPicks);
+
+    document.addEventListener('DOMContentLoaded', loadSignals);
   </script>
 </body>
 </html>

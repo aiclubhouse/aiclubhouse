@@ -1,5 +1,6 @@
 # Generated files
 data/*.json
+!data/market-odds-picks.json
 
 # Local overrides
 *.local.*
