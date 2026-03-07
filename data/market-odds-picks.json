@@ -1,18 +1,17 @@
 {
-  "cached": true,
   "count": 4,
   "picks": [
     {
       "action": "BUY YES",
       "category": "WEATHER",
       "confidence": "HIGH",
-      "edge": "37.5%",
-      "forecast": "43.1\u00b0F",
-      "implied_prob": "57%",
-      "market_price": "55\u00a2 bid / 60\u00a2 ask",
+      "edge": "36.0%",
+      "forecast": "43.4\u00b0F",
+      "implied_prob": "59%",
+      "market_price": "58\u00a2 bid / 60\u00a2 ask",
       "max_profit": "$16.67",
       "position_size": "$25.00",
-      "reasoning": "Open-Meteo forecast: 43.1\u00b0F high. Market implies 57% but true prob ~95%",
+      "reasoning": "Open-Meteo forecast: 43.4\u00b0F high. Market implies 59% but true prob ~95%",
       "ticker": "KXHIGHNY-26MAR07-T50",
       "title": "Will the **high temp in NYC** be <50\u00b0 on Mar 7, 2026?",
       "true_prob": "95%"
@@ -21,13 +20,13 @@
       "action": "BUY NO",
       "category": "WEATHER",
       "confidence": "HIGH",
-      "edge": "22.5%",
-      "forecast": "43.1\u00b0F",
-      "implied_prob": "26%",
-      "market_price": "25\u00a2 bid / 26\u00a2 ask",
-      "max_profit": "$8.33",
+      "edge": "25.0%",
+      "forecast": "43.4\u00b0F",
+      "implied_prob": "28%",
+      "market_price": "27\u00a2 bid / 29\u00a2 ask",
+      "max_profit": "$9.25",
       "position_size": "$25.00",
-      "reasoning": "Open-Meteo forecast: 43.1\u00b0F high. Market implies 26% but true prob ~3%",
+      "reasoning": "Open-Meteo forecast: 43.4\u00b0F high. Market implies 28% but true prob ~3%",
       "ticker": "KXHIGHNY-26MAR07-B50.5",
       "title": "Will the **high temp in NYC** be 50-51\u00b0 on Mar 7, 2026?",
       "true_prob": "3%"
@@ -36,7 +35,7 @@
       "action": "BUY YES",
       "category": "EXECUTIVE ORDERS",
       "confidence": "MEDIUM",
-      "edge": "14.0%",
+      "edge": "16.5%",
       "reasoning": "EOs signed this week: 0, 1 day(s) remaining",
       "ticker": "KXEOWEEK-26MAR07-3",
       "title": "Will the President sign at least 3 Executive Orders between Mar 1, 2026 and Mar 7, 2026?"
@@ -52,7 +51,7 @@
     }
   ],
   "status": "success",
-  "updated": "2026-03-07T18:47:40.498122",
-  "_updated": "2026-03-07T10:05:19.168908Z",
+  "updated": "2026-03-07T21:10:36.857441",
+  "_updated": "2026-03-07T10:10:36.860136Z",
   "_source": "Market Odds Alpha v1.0"
 }
