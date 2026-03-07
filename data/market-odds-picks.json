@@ -59,12 +59,12 @@
       "source_title": "Bank Refusing $20K Withdrawal",
       "source_sub": "Bitcoin",
       "source_url": "https://reddit.com/r/Bitcoin/comments/1rnhcqc/bank_refusing_20k_withdrawal/",
-      "current_price": 1966.56,
+      "current_price": 1965.87,
       "day_change": "-0.7%",
       "week_change": "+1.0%",
       "expected_move": "+5.3%",
       "confidence": 0.34,
-      "expected_roi": 1.83
+      "expected_roi": 1.82
     },
     {
       "ticker": "HIMS",
@@ -171,12 +171,12 @@
       "source_title": "bro wtf mr beast just bought a bank and is about to turn his fans into exit liquidity \ud83d\ude2d",
       "source_sub": "cryptocurrency",
       "source_url": "https://reddit.com/r/CryptoCurrency/comments/1rndfiq/bro_wtf_mr_beast_just_bought_a_bank_and_is_about/",
-      "current_price": 1966.56,
+      "current_price": 1965.87,
       "day_change": "-0.7%",
       "week_change": "+1.0%",
       "expected_move": "+3.3%",
       "confidence": 0.23,
-      "expected_roi": 0.76
+      "expected_roi": 0.75
     },
     {
       "ticker": "BTC-USD",
@@ -187,12 +187,12 @@
       "source_title": "Bank Refusing $20K Withdrawal",
       "source_sub": "Bitcoin",
       "source_url": "https://reddit.com/r/Bitcoin/comments/1rnhcqc/bank_refusing_20k_withdrawal/",
-      "current_price": 67380,
+      "current_price": 67398,
       "day_change": "-1.1%",
-      "week_change": "+1.5%",
+      "week_change": "+1.6%",
       "expected_move": "+6.9%",
       "confidence": 0.43,
-      "expected_roi": 2.97
+      "expected_roi": 2.96
     },
     {
       "ticker": "NVO",
@@ -219,12 +219,12 @@
       "source_title": "bro wtf mr beast just bought a bank and is about to turn his fans into exit liquidity \ud83d\ude2d",
       "source_sub": "cryptocurrency",
       "source_url": "https://reddit.com/r/CryptoCurrency/comments/1rndfiq/bro_wtf_mr_beast_just_bought_a_bank_and_is_about/",
-      "current_price": 67380,
+      "current_price": 67398,
       "day_change": "-1.1%",
-      "week_change": "+1.5%",
+      "week_change": "+1.6%",
       "expected_move": "+3.9%",
-      "confidence": 0.31,
-      "expected_roi": 1.19
+      "confidence": 0.3,
+      "expected_roi": 1.18
     },
     {
       "ticker": "OXY",
@@ -325,6 +325,6 @@
   ],
   "catalysts_detected": 5,
   "early_count": 11,
-  "updated": "2026-03-07T21:04:05.315319Z",
+  "updated": "2026-03-07T21:06:10.704368Z",
   "_source": "Flashpoint v3.0 \u2014 Catalyst Intelligence"
 }
