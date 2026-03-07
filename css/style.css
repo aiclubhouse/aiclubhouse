@@ -57,9 +57,11 @@ img { max-width: 100%; height: auto; }
   height: 72px;
 }
 .nav-brand {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 1.25rem; font-weight: 700; color: var(--text-primary);
+  display: flex; align-items: center; gap: 8px;
+  font-size: 1.1rem; font-weight: 400; color: var(--text-secondary);
+  letter-spacing: -0.3px;
 }
+.nav-brand:hover { color: var(--text-primary); }
 .nav-brand span { font-size: 1.5rem; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
