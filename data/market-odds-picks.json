@@ -15,8 +15,8 @@
       "day_change": "+0.3%",
       "week_change": "-1.9%",
       "expected_move": "+4.7%",
-      "confidence": 0.52,
-      "expected_roi": 2.43
+      "confidence": 0.51,
+      "expected_roi": 2.42
     },
     {
       "ticker": "WDS.AX",
@@ -31,8 +31,8 @@
       "day_change": "+1.0%",
       "week_change": "+4.5%",
       "expected_move": "+4.0%",
-      "confidence": 0.52,
-      "expected_roi": 2.07
+      "confidence": 0.51,
+      "expected_roi": 2.06
     },
     {
       "ticker": "CVX",
@@ -47,8 +47,8 @@
       "day_change": "+0.0%",
       "week_change": "+0.2%",
       "expected_move": "+4.0%",
-      "confidence": 0.52,
-      "expected_roi": 2.06
+      "confidence": 0.51,
+      "expected_roi": 2.05
     },
     {
       "ticker": "ETH-USD",
@@ -59,12 +59,12 @@
       "source_title": "Bank Refusing $20K Withdrawal",
       "source_sub": "Bitcoin",
       "source_url": "https://reddit.com/r/Bitcoin/comments/1rnhcqc/bank_refusing_20k_withdrawal/",
-      "current_price": 1967.73,
-      "day_change": "-0.6%",
-      "week_change": "+1.1%",
-      "expected_move": "+5.4%",
+      "current_price": 1966.56,
+      "day_change": "-0.7%",
+      "week_change": "+1.0%",
+      "expected_move": "+5.3%",
       "confidence": 0.34,
-      "expected_roi": 1.85
+      "expected_roi": 1.83
     },
     {
       "ticker": "HIMS",
@@ -171,12 +171,12 @@
       "source_title": "bro wtf mr beast just bought a bank and is about to turn his fans into exit liquidity \ud83d\ude2d",
       "source_sub": "cryptocurrency",
       "source_url": "https://reddit.com/r/CryptoCurrency/comments/1rndfiq/bro_wtf_mr_beast_just_bought_a_bank_and_is_about/",
-      "current_price": 1967.73,
-      "day_change": "-0.6%",
-      "week_change": "+1.1%",
-      "expected_move": "+3.4%",
+      "current_price": 1966.56,
+      "day_change": "-0.7%",
+      "week_change": "+1.0%",
+      "expected_move": "+3.3%",
       "confidence": 0.23,
-      "expected_roi": 0.77
+      "expected_roi": 0.76
     },
     {
       "ticker": "BTC-USD",
@@ -187,12 +187,12 @@
       "source_title": "Bank Refusing $20K Withdrawal",
       "source_sub": "Bitcoin",
       "source_url": "https://reddit.com/r/Bitcoin/comments/1rnhcqc/bank_refusing_20k_withdrawal/",
-      "current_price": 67402,
+      "current_price": 67380,
       "day_change": "-1.1%",
-      "week_change": "+1.6%",
+      "week_change": "+1.5%",
       "expected_move": "+6.9%",
       "confidence": 0.43,
-      "expected_roi": 2.99
+      "expected_roi": 2.97
     },
     {
       "ticker": "NVO",
@@ -219,12 +219,12 @@
       "source_title": "bro wtf mr beast just bought a bank and is about to turn his fans into exit liquidity \ud83d\ude2d",
       "source_sub": "cryptocurrency",
       "source_url": "https://reddit.com/r/CryptoCurrency/comments/1rndfiq/bro_wtf_mr_beast_just_bought_a_bank_and_is_about/",
-      "current_price": 67402,
+      "current_price": 67380,
       "day_change": "-1.1%",
-      "week_change": "+1.6%",
+      "week_change": "+1.5%",
       "expected_move": "+3.9%",
       "confidence": 0.31,
-      "expected_roi": 1.2
+      "expected_roi": 1.19
     },
     {
       "ticker": "OXY",
@@ -287,7 +287,7 @@
       "day_change": "+1.6%",
       "week_change": "-3.4%",
       "expected_move": "+1.4%",
-      "confidence": 0.16,
+      "confidence": 0.15,
       "expected_roi": 0.22
     },
     {
@@ -325,6 +325,6 @@
   ],
   "catalysts_detected": 5,
   "early_count": 11,
-  "updated": "2026-03-07T21:02:44.508000Z",
+  "updated": "2026-03-07T21:04:05.315319Z",
   "_source": "Flashpoint v3.0 \u2014 Catalyst Intelligence"
 }
