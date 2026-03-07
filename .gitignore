@@ -1,0 +1,13 @@
+# Generated files
+data/*.json
+
+# Local overrides
+*.local.*
+.env
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Build outputs
+_site/
+dist/
