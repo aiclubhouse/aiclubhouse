@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashpoint — Catch the Spark Before the Fire</title>
-  <meta name="description" content="AI-powered catalyst detection for ASX, US stocks & crypto. We detect the event. You catch the move.">
-  <meta property="og:title" content="Flashpoint — Catalyst Intelligence">
-  <meta property="og:description" content="War breaks out → oil spikes. Elon tweets → stock moons. We detect the catalyst before the price moves.">
+  <title>Flashpoint — Harbinger Discovery Engine</title>
+  <meta name="description" content="Find the next 20%+ mover before anyone else. Flashpoint's Harbinger engine scans for precursor signals of explosive stock moves.">
+  <meta property="og:title" content="Flashpoint — Harbinger Discovery Engine">
+  <meta property="og:description" content="We reverse-engineered every 20%+ stock pop. Now we scan for the same precursors happening RIGHT NOW.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aiclubhouse.com.au/market-odds">
   <meta name="robots" content="index, follow">
@@ -14,12 +14,19 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root { --green: #10b981; --yellow: #f59e0b; --orange: #f97316; --red: #ef4444; --blue: #3b82f6; }
+    :root { 
+      --green: #10b981; 
+      --yellow: #f59e0b; 
+      --orange: #f97316; 
+      --red: #ef4444; 
+      --blue: #3b82f6; 
+      --gray: #64748b;
+    }
 
     /* Hero */
     .hero-alpha { background: linear-gradient(135deg, #0a0e17 0%, #111827 50%, #0f172a 100%); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 5rem 0 4rem; text-align: center; }
     .hero-alpha h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-alpha h1 span { background: linear-gradient(135deg, var(--green), #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-alpha h1 span { background: linear-gradient(135deg, var(--red), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-sub { font-size: 1.25rem; color: #94a3b8; max-width: 640px; margin: 0 auto 2rem; line-height: 1.6; }
     .hero-examples { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .hero-example { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem 1.5rem; font-size: 0.9rem; color: #cbd5e1; }
@@ -30,69 +37,77 @@
     .stats-bar { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin: 2rem 0; }
     .stat-item { text-align: center; }
     .stat-num { font-size: 2rem; font-weight: 800; color: #fff; }
-    .stat-num.green { color: var(--green); }
+    .stat-num.red { color: var(--red); }
     .stat-label { font-size: 0.85rem; color: #64748b; margin-top: 0.25rem; }
 
-    /* Signal cards */
+    /* Signals Section */
     .signals-section { padding: 4rem 0; }
     .signals-grid { display: grid; gap: 1rem; margin: 2rem 0; }
-    .signal-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.25rem 1.5rem; transition: border-color 0.2s; }
-    .signal-card:hover { border-color: rgba(255,255,255,0.15); }
-    .signal-card.early { border-left: 3px solid var(--green); }
-    .signal-card.emerging { border-left: 3px solid var(--yellow); }
-    .signal-card.moving { border-left: 3px solid var(--orange); }
-    .signal-card.late { border-left: 3px solid var(--red); opacity: 0.6; }
+    
+    /* Harbinger Cards */
+    .signal-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.5rem; transition: all 0.2s; position: relative; overflow: hidden; }
+    .signal-card:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
+    .signal-card.harbinger { border-left: 4px solid var(--red); background: linear-gradient(to right, rgba(239, 68, 68, 0.05), rgba(255, 255, 255, 0.02)); }
+    
+    .card-main-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .ticker-block { display: flex; align-items: baseline; gap: 0.75rem; }
+    .ticker-symbol { font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+    .company-name { font-size: 0.9rem; color: #64748b; font-weight: 500; }
+    
+    .score-badge { padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 800; font-size: 0.9rem; background: #000; border: 1px solid rgba(255,255,255,0.1); }
+    .score-high { color: var(--red); border-color: rgba(239, 68, 68, 0.3); }
+    .score-mid { color: var(--orange); border-color: rgba(249, 115, 22, 0.3); }
+    .score-low { color: var(--yellow); border-color: rgba(245, 158, 11, 0.3); }
+    .score-cold { color: var(--gray); border-color: rgba(100, 116, 139, 0.3); }
 
-    .signal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-    .signal-ticker { font-size: 1.3rem; font-weight: 800; color: #fff; }
-    .signal-badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-    .badge-early { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
-    .badge-emerging { background: rgba(245,158,11,0.15); color: var(--yellow); border: 1px solid rgba(245,158,11,0.3); }
-    .badge-moving { background: rgba(249,115,22,0.15); color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
-    .badge-late { background: rgba(239,68,68,0.1); color: var(--red); border: 1px solid rgba(239,68,68,0.2); }
-    .badge-long { background: rgba(16,185,129,0.1); color: var(--green); }
-    .badge-short { background: rgba(239,68,68,0.1); color: var(--red); }
+    .harbinger-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin: 1.25rem 0; padding: 1.25rem 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .harbinger-metric .m-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+    .harbinger-metric .m-value { font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .harbinger-metric .m-value.highlight { color: var(--green); }
 
-    .signal-catalyst { font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.5rem; }
-    .signal-catalyst strong { color: #cbd5e1; }
-    .signal-source { font-size: 0.8rem; color: #64748b; margin-bottom: 0.75rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-    .signal-metrics { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .metric { font-size: 0.85rem; }
-    .metric-label { color: #64748b; }
-    .metric-value { color: #e2e8f0; font-weight: 600; }
-    .metric-value.positive { color: var(--green); }
-    .metric-value.negative { color: var(--red); }
+    .reasons-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .reason-tag { font-size: 0.75rem; background: rgba(255,255,255,0.05); color: #cbd5e1; padding: 0.3rem 0.6rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); }
 
-    /* CTA */
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .cta-box { background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 3rem 2rem; max-width: 600px; margin: 0 auto; }
-    .cta-box h2 { font-size: 1.8rem; color: #fff; margin-bottom: 1rem; }
-    .cta-box p { color: #94a3b8; margin-bottom: 1.5rem; line-height: 1.6; }
-    .btn-cta { display: inline-block; background: var(--green); color: #000; font-weight: 700; padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none; font-size: 1.05rem; transition: transform 0.15s; }
-    .btn-cta:hover { transform: translateY(-1px); }
+    /* Secondary Signals */
+    .secondary-signals { margin-top: 4rem; opacity: 0.7; }
+    .secondary-signals h3 { font-size: 1.2rem; color: var(--gray); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .secondary-card { padding: 1rem 1.25rem; font-size: 0.9rem; }
+
+    /* Score Bar */
+    .score-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 0.5rem; overflow: hidden; }
+    .score-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease-out; }
 
     /* How it works */
-    .how-section { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
-    .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .how-step { text-align: center; padding: 1.5rem; }
-    .how-num { font-size: 2.5rem; font-weight: 900; color: rgba(16,185,129,0.3); margin-bottom: 0.5rem; }
-    .how-step h3 { color: #e2e8f0; font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .how-step p { color: #64748b; font-size: 0.9rem; line-height: 1.5; }
+    .how-section { padding: 5rem 0; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.01); }
+    .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 3rem 0; }
+    .how-step { text-align: left; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; }
+    .how-num { font-size: 1.5rem; font-weight: 900; color: var(--red); margin-bottom: 1rem; font-family: monospace; }
+    .how-step h3 { color: #fff; font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .how-step p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: 5rem 0; }
+    .cta-box { background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(249, 115, 22, 0.1)); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 20px; padding: 4rem 2rem; max-width: 700px; margin: 0 auto; }
+    .cta-box h2 { font-size: 2.2rem; color: #fff; margin-bottom: 1rem; font-weight: 800; }
+    .cta-box p { color: #cbd5e1; margin-bottom: 2rem; line-height: 1.6; font-size: 1.1rem; }
+    .btn-cta { display: inline-block; background: #fff; color: #000; font-weight: 800; padding: 1.1rem 2.5rem; border-radius: 12px; text-decoration: none; font-size: 1.1rem; transition: all 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0,0,0,0.4); background: #f8fafc; }
 
     /* Disclaimer */
-    .disclaimer { background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
+    .disclaimer { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.5rem; margin: 3rem 0; font-size: 0.85rem; color: #64748b; line-height: 1.6; }
 
-    .section-title { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
-    .section-sub { color: #64748b; max-width: 600px; }
-    .loading { text-align: center; padding: 3rem; color: #64748b; }
-    .refresh-info { font-size: 0.85rem; color: #475569; margin-bottom: 1rem; }
+    .section-title { font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 0.75rem; letter-spacing: -0.5px; }
+    .section-sub { color: #94a3b8; max-width: 600px; font-size: 1.1rem; margin-bottom: 2rem; }
+    .loading { text-align: center; padding: 4rem; color: #64748b; font-size: 1.1rem; }
+    .updated-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding: 0 0.5rem; }
+    .refresh-info { font-size: 0.85rem; color: #475569; }
 
     @media (max-width: 768px) {
-      .hero-alpha h1 { font-size: 2.2rem; }
-      .hero-alpha { padding: 3rem 1rem 2.5rem; }
+      .hero-alpha h1 { font-size: 2.4rem; }
+      .hero-alpha { padding: 4rem 1rem 3rem; }
       .hero-examples { flex-direction: column; align-items: center; }
       .stats-bar { gap: 1.5rem; }
-      .signal-metrics { gap: 0.75rem; }
+      .harbinger-metrics { grid-template-columns: 1fr 1fr; gap: 1rem; }
     }
   </style>
 </head>
@@ -105,6 +120,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="/#tools">AI Tools</a></li>
         <li><a href="/#blog">Blog</a></li>
+        <li><a href="/portfolios.html">📊 Portfolios</a></li>
         <li><a href="/market-odds" class="active">⚡ Flashpoint</a></li>
       </ul>
     </div>
@@ -113,17 +129,17 @@
   <!-- ═══ HERO ═══ -->
   <section class="hero-alpha">
     <div class="container">
-      <h1>Catch the Spark.<br><span>Before the Fire.</span></h1>
-      <p class="hero-sub">Flashpoint monitors news, social media, and market events 24/7. When a catalyst hits — war, a viral tweet, a policy shift — we flag the assets that will move <em>before</em> they move.</p>
+      <h1>Find the Next 20%+ Mover.<br><span>Before Anyone Else.</span></h1>
+      <p class="hero-sub">Flashpoint's Harbinger engine studies the anatomy of explosive stock moves — GameStop, DOGE, HIMS — and scans for the same precursor signals happening RIGHT NOW.</p>
       <div class="hero-examples">
-        <div class="hero-example">🔥 Iran attacks Saudi oil field <span class="arrow">→</span> <strong>Oil +35%</strong></div>
-        <div class="hero-example">🐦 Elon tweets GameStop <span class="arrow">→</span> <strong>GME +80%</strong></div>
-        <div class="hero-example">📉 Bad jobs report <span class="arrow">→</span> <strong>Bonds rally</strong></div>
+        <div class="hero-example">🎮 <strong>GME:</strong> 140% SI + Reddit viral <span class="arrow">→</span> <strong>+1,600%</strong> in 2w</div>
+        <div class="hero-example">🐕 <strong>DOGE:</strong> Elon tweets + meme spread <span class="arrow">→</span> <strong>+929%</strong> in 7d</div>
+        <div class="hero-example">💊 <strong>HIMS:</strong> 36% SI + FDA catalyst <span class="arrow">→</span> <strong>+60%</strong> in 14d</div>
       </div>
-      <div class="stats-bar" id="stats-bar">
-        <div class="stat-item"><div class="stat-num green" id="stat-early">—</div><div class="stat-label">Early Signals</div></div>
-        <div class="stat-item"><div class="stat-num" id="stat-catalysts">—</div><div class="stat-label">Catalysts Detected</div></div>
-        <div class="stat-item"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Opportunities</div></div>
+      <div class="stats-bar">
+        <div class="stat-item"><div class="stat-num red" id="stat-count">—</div><div class="stat-label">Harbinger Candidates</div></div>
+        <div class="stat-item"><div class="stat-num">✅</div><div class="stat-label">Verified via yfinance</div></div>
+        <div class="stat-item"><div class="stat-num">+20%</div><div class="stat-label">Target in ≤4 weeks</div></div>
       </div>
     </div>
   </section>
@@ -131,11 +147,21 @@
   <!-- ═══ LIVE SIGNALS ═══ -->
   <section class="signals-section">
     <div class="container">
-      <h2 class="section-title">🟢 Live Signals</h2>
-      <p class="section-sub">Ranked by expected ROI. Green = catalyst fired, price hasn't moved yet.</p>
-      <p class="refresh-info">Updated: <span id="updated-time">loading...</span> · Auto-refreshes every 30 minutes</p>
-      <div class="signals-grid" id="signals-container">
-        <div class="loading">⏳ Loading live signals...</div>
+      <div class="updated-meta">
+        <div>
+          <h2 class="section-title">🔮 Harbinger Candidates</h2>
+          <p class="section-sub">Precursor signals matching historical explosive patterns.</p>
+        </div>
+        <div class="refresh-info">Updated: <span id="updated-time">loading...</span></div>
+      </div>
+
+      <div class="signals-grid" id="harbinger-container">
+        <div class="loading">📡 Scanning social acceleration and squeeze fuel...</div>
+      </div>
+
+      <div class="secondary-signals" id="secondary-wrapper" style="display:none;">
+        <h3>📡 Catalyst Signals</h3>
+        <div class="signals-grid" id="catalyst-container"></div>
       </div>
     </div>
   </section>
@@ -143,27 +169,27 @@
   <!-- ═══ HOW IT WORKS ═══ -->
   <section class="how-section">
     <div class="container">
-      <h2 class="section-title" style="text-align:center;">How It Works</h2>
+      <h2 class="section-title" style="text-align:center; margin-bottom:3rem;">The Harbinger Engine</h2>
       <div class="how-grid">
         <div class="how-step">
           <div class="how-num">01</div>
-          <h3>Detect the Spark</h3>
-          <p>Flashpoint monitors Reddit, Twitter, Bloomberg, and news feeds 24/7 for market-moving events — wars, policy shifts, viral posts, whale moves.</p>
+          <h3>Study the Anatomy</h3>
+          <p>We reverse-engineered every 20%+ stock pop (GME, AMC, DOGE, HIMS, DJT). The precursors are always the same: social velocity, short pressure, and float dynamics.</p>
         </div>
         <div class="how-step">
           <div class="how-num">02</div>
-          <h3>Map to Assets</h3>
-          <p>Each catalyst is instantly mapped to affected ASX stocks, US equities, ETFs, and cryptocurrencies using cause-effect rules.</p>
+          <h3>Scan for Precursors</h3>
+          <p>Every hour: Reddit, Twitter, and news across 12+ communities. We look for social acceleration, squeeze language, and cross-platform viral spread before the pump.</p>
         </div>
         <div class="how-step">
           <div class="how-num">03</div>
-          <h3>Check the Price Gap</h3>
-          <p>Has the price already moved? If not, that's the window. The gap between event and price = your alpha opportunity.</p>
+          <h3>Verify the Fuel</h3>
+          <p>Each candidate gets live verification: actual short interest %, market cap, and float. Fake social signals are filtered. Real squeeze fuel is confirmed via yfinance.</p>
         </div>
         <div class="how-step">
           <div class="how-num">04</div>
-          <h3>Rank by ROI</h3>
-          <p>Signals are ranked by expected return: biggest predicted moves that haven't happened yet appear first.</p>
+          <h3>Score & Alert</h3>
+          <p>Candidates are scored 0-100 based on fit to pop patterns. Expected return and timeframe are calculated. Only high-confidence "Harbingers" make the cut.</p>
         </div>
       </div>
     </div>
@@ -173,10 +199,9 @@
   <section class="cta-section">
     <div class="container">
       <div class="cta-box">
-        <h2>⚡ Get Instant Alerts</h2>
-        <p>Don't wait for the page refresh. Join the Flashpoint Telegram channel for real-time catalyst alerts pushed the second they fire.</p>
-        <a href="https://t.me/flashpointsignals" class="btn-cta">⚡ Join Flashpoint Signals</a>
-        <p style="margin-top:1rem; font-size:0.85rem; color:#64748b;">Free: delayed signals (this page). Premium: instant alerts + confidence scores + expected ROI.</p>
+        <h2>Never Miss the Next Leg Up</h2>
+        <p>Get harbinger alerts the moment they trigger. Join 5,000+ traders receiving real-time precursor signals directly to their phones.</p>
+        <a href="https://t.me/flashpointsignals" class="btn-cta">⚡ Join Flashpoint on Telegram</a>
       </div>
     </div>
   </section>
@@ -184,77 +209,135 @@
   <!-- ═══ DISCLAIMER ═══ -->
   <div class="container">
     <div class="disclaimer">
-      <strong>⚠️ Not Financial Advice.</strong> Flashpoint provides informational signals based on social media monitoring and pattern matching. This is not a recommendation to buy or sell any security. All investing involves risk. Past catalyst patterns do not guarantee future price movements. Always do your own research. Flashpoint is a product of AI Clubhouse.
+      <strong>⚠️ Not Financial Advice.</strong> Flashpoint provides informational signals based on social media monitoring, precursor pattern matching, and short interest analysis. This is not a recommendation to buy or sell any security. All investing involves risk. Past harbinger patterns do not guarantee future price movements. High-volatility assets can result in total loss. Always do your own research. Flashpoint is a product of AI Clubhouse.
     </div>
   </div>
 
   <!-- ═══ FOOTER ═══ -->
-  <footer style="text-align:center; padding:2rem; color:#475569; font-size:0.85rem; border-top:1px solid rgba(255,255,255,0.06);">
+  <footer style="text-align:center; padding:3rem 2rem; color:#475569; font-size:0.85rem; border-top:1px solid rgba(255,255,255,0.06);">
     <p>© 2026 AI Clubhouse · <a href="/privacy" style="color:#64748b;">Privacy</a> · <a href="/terms" style="color:#64748b;">Terms</a> · <a href="/affiliate-disclosure" style="color:#64748b;">Disclosure</a></p>
   </footer>
 
   <script>
+    function getScoreClass(score) {
+      if (score >= 80) return 'score-high';
+      if (score >= 50) return 'score-mid';
+      if (score >= 25) return 'score-low';
+      return 'score-cold';
+    }
+
+    function getScoreColor(score) {
+      if (score >= 80) return 'var(--red)';
+      if (score >= 50) return 'var(--orange)';
+      if (score >= 25) return 'var(--yellow)';
+      return 'var(--gray)';
+    }
+
     async function loadSignals() {
-      const container = document.getElementById('signals-container');
+      const harbingerContainer = document.getElementById('harbinger-container');
+      const catalystContainer = document.getElementById('catalyst-container');
+      const secondaryWrapper = document.getElementById('secondary-wrapper');
+      
       try {
-        const resp = await fetch('/data/market-odds-picks.json');
-        if (!resp.ok) throw new Error('Failed to load');
+        const resp = await fetch('data/market-odds-picks.json');
+        if (!resp.ok) throw new Error('Failed to load JSON');
         const data = await resp.json();
 
-        // Stats
-        document.getElementById('stat-early').textContent = data.early_count || 0;
-        document.getElementById('stat-catalysts').textContent = data.catalysts_detected || 0;
-        document.getElementById('stat-total').textContent = data.count || 0;
-
-        // Updated time
+        // Stats & Meta
+        document.getElementById('stat-count').textContent = data.harbinger_count || 0;
         if (data.updated) {
           const d = new Date(data.updated);
           document.getElementById('updated-time').textContent = d.toLocaleString();
         }
 
         if (!data.picks || data.picks.length === 0) {
-          container.innerHTML = '<div class="loading">📊 No active catalysts detected. Markets are quiet. Check back soon.</div>';
+          harbingerContainer.innerHTML = '<div class="loading">📊 No harbinger signals detected. Scanning 12+ communities for precursors...</div>';
           return;
         }
 
-        let html = '';
+        let harbingerHtml = '';
+        let catalystHtml = '';
+        let hCount = 0;
+
         data.picks.forEach(pick => {
-          const signal = (pick.signal || 'unknown').toLowerCase();
-          const badgeClass = `badge-${signal}`;
-          const dirClass = pick.direction === 'LONG' ? 'badge-long' : 'badge-short';
-          const dirEmoji = pick.direction === 'LONG' ? '📈' : '📉';
-
-          const dayChange = parseFloat(pick.day_change) || 0;
-          const dayClass = dayChange >= 0 ? 'positive' : 'negative';
-
-          const roi = pick.expected_roi || 0;
-          const conf = pick.confidence ? (pick.confidence * 100).toFixed(0) + '%' : '—';
-
-          html += `
-            <div class="signal-card ${signal}">
-              <div class="signal-header">
-                <div>
-                  <span class="signal-ticker">${pick.ticker}</span>
-                  <span class="signal-badge ${dirClass}" style="margin-left:0.5rem;">${dirEmoji} ${pick.direction}</span>
+          if (pick.signal === 'HARBINGER') {
+            hCount++;
+            const score = pick.harbinger_score || 0;
+            const scoreClass = getScoreClass(score);
+            const scoreColor = getScoreColor(score);
+            const marketCap = pick.market_cap ? `$${(pick.market_cap / 1e9).toFixed(1)}B` : '—';
+            
+            harbingerHtml += `
+              <div class="signal-card harbinger">
+                <div class="card-main-meta">
+                  <div class="ticker-block">
+                    <span class="ticker-symbol">$${pick.ticker}</span>
+                    <span class="company-name">${pick.company_name || pick.source_sub || ''}</span>
+                  </div>
+                  <div class="score-badge ${scoreClass}">
+                    Score: ${score}/100
+                    <div class="score-bar-bg"><div class="score-bar-fill" style="width: ${score}%; background: ${scoreColor};"></div></div>
+                  </div>
                 </div>
-                <span class="signal-badge ${badgeClass}">${pick.signal}</span>
-              </div>
-              <div class="signal-catalyst"><strong>Catalyst:</strong> ${pick.catalyst || '—'}</div>
-              <div class="signal-source">📰 r/${pick.source_sub || '—'} — ${pick.source_title || ''}</div>
-              <div class="signal-metrics">
-                <div class="metric"><span class="metric-label">Expected Move</span><br><span class="metric-value positive">${pick.expected_move || '—'}</span></div>
-                <div class="metric"><span class="metric-label">Confidence</span><br><span class="metric-value">${conf}</span></div>
-                <div class="metric"><span class="metric-label">ROI Score</span><br><span class="metric-value positive">${roi.toFixed(1)}%</span></div>
-                <div class="metric"><span class="metric-label">Price</span><br><span class="metric-value">$${pick.current_price?.toLocaleString() || '—'}</span></div>
-                <div class="metric"><span class="metric-label">Today</span><br><span class="metric-value ${dayClass}">${pick.day_change || '—'}</span></div>
-              </div>
-            </div>`;
+                
+                <div class="harbinger-metrics">
+                  <div class="harbinger-metric">
+                    <div class="m-label">Exp. Move</div>
+                    <div class="m-value highlight">${pick.expected_move || '—'}</div>
+                  </div>
+                  <div class="harbinger-metric">
+                    <div class="m-label">Timeframe</div>
+                    <div class="m-value">${pick.timeframe || '—'}</div>
+                  </div>
+                  <div class="harbinger-metric">
+                    <div class="m-label">Short Interest</div>
+                    <div class="m-value">${pick.verified_si || '—'}</div>
+                  </div>
+                  <div class="harbinger-metric">
+                    <div class="m-label">Market Cap</div>
+                    <div class="m-value">${marketCap}</div>
+                  </div>
+                  <div class="harbinger-metric">
+                    <div class="m-label">Social Hits</div>
+                    <div class="m-value">${pick.mentions || 0} mentions</div>
+                  </div>
+                  <div class="harbinger-metric">
+                    <div class="m-label">Communities</div>
+                    <div class="m-value">${pick.sub_count || 0} subs</div>
+                  </div>
+                </div>
+
+                <div class="reasons-list">
+                  ${(pick.reasons || []).map(r => `<span class="reason-tag">${r}</span>`).join('')}
+                </div>
+              </div>`;
+          } else {
+            // Secondary Catalyst signals
+            catalystHtml += `
+              <div class="signal-card secondary-card">
+                <div class="signal-header" style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <strong style="color:#fff;">$${pick.ticker}</strong>
+                  <span style="font-size:0.7rem; color:var(--gray); text-transform:uppercase;">${pick.signal}</span>
+                </div>
+                <div style="color:#94a3b8; font-size:0.85rem; margin-bottom:0.5rem;">${pick.catalyst}</div>
+                <div style="display:flex; gap:1rem; font-size:0.8rem; color:var(--gray);">
+                  <span>Move: <strong style="color:var(--green);">${pick.expected_move}</strong></span>
+                  <span>Conf: ${(pick.confidence * 100).toFixed(0)}%</span>
+                </div>
+              </div>`;
+          }
         });
 
-        container.innerHTML = html;
+        harbingerContainer.innerHTML = hCount > 0 ? harbingerHtml : '<div class="loading">Scanning for high-alpha harbingers... Check catalyst signals below.</div>';
+        
+        if (catalystHtml) {
+          catalystContainer.innerHTML = catalystHtml;
+          secondaryWrapper.style.display = 'block';
+        }
 
       } catch (err) {
-        container.innerHTML = '<div class="loading">⚠️ Could not load signals. Check back shortly.</div>';
+        console.error(err);
+        harbingerContainer.innerHTML = '<div class="loading">⚠️ Failed to load harbinger engine data. Please refresh.</div>';
       }
     }
 

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Performing Portfolios — AI Clubhouse | Reconstructed 13F & Tracking</title>
+  <meta name="description" content="Explore top performing investment portfolios reconstructed from public 13F filings and congressional disclosures. AI-driven tracking and strategy analysis.">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #10b981; --yellow: #f59e0b; --orange: #f97316; --red: #ef4444; --blue: #3b82f6; --bg-dark: #0a0e17; }
+
+    body { background-color: var(--bg-dark); color: #e2e8f0; }
+
+    /* Hero Area */
+    .hero-portfolios { background: linear-gradient(135deg, #0a0e17 0%, #111827 50%, #0f172a 100%); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 5rem 0 3rem; text-align: center; }
+    .hero-portfolios h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-portfolios h1 span { background: linear-gradient(135deg, var(--green), #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 1.25rem; color: #94a3b8; max-width: 700px; margin: 0 auto 2rem; line-height: 1.6; }
+
+    /* Portfolio Grid */
+    .portfolios-section { padding: 4rem 0; }
+    .portfolio-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 2rem; margin-bottom: 3rem; transition: border-color 0.2s; }
+    .portfolio-card:hover { border-color: rgba(255,255,255,0.12); }
+    
+    .portfolio-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 1.5rem; }
+    .portfolio-title-area h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.25rem; }
+    .portfolio-creator { font-size: 1rem; color: #64748b; font-weight: 500; }
+    .portfolio-return { text-align: right; }
+    .return-val { font-size: 2.2rem; font-weight: 900; color: var(--green); display: block; line-height: 1; }
+    .return-label { font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-top: 0.5rem; display: block; }
+
+    .portfolio-strategy { margin-bottom: 2rem; }
+    .strategy-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #475569; letter-spacing: 1px; margin-bottom: 0.75rem; display: block; }
+    .strategy-desc { font-size: 1.05rem; color: #cbd5e1; line-height: 1.6; }
+
+    /* Table Styles */
+    .holdings-container { overflow-x: auto; margin-top: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); }
+    .holdings-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
+    .holdings-table th { background: rgba(255,255,255,0.02); color: #64748b; font-weight: 600; padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .holdings-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #e2e8f0; }
+    .holdings-table tr:last-child td { border-bottom: none; }
+    .ticker { font-weight: 800; color: #fff; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: monospace; }
+    .weight { color: var(--green); font-weight: 600; }
+
+    .datasource-note { font-size: 0.8rem; color: #475569; margin-top: 1rem; font-style: italic; }
+
+    /* Footer Disclaimers */
+    .disclaimer-box { background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); border-radius: 12px; padding: 2rem; margin: 4rem 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.7; }
+    .disclaimer-box ul { margin-top: 1rem; padding-left: 1.25rem; }
+    .disclaimer-box li { margin-bottom: 0.5rem; }
+
+    @media (max-width: 768px) {
+      .hero-portfolios h1 { font-size: 2.2rem; }
+      .portfolio-header { flex-direction: column; text-align: left; }
+      .portfolio-return { text-align: left; }
+      .return-val { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand"><img src="/img/logo.svg" alt="AI Clubhouse" height="28"></a>
+      <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#tools">AI Tools</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/market-odds.html">⚡ Flashpoint</a></li>
+        <li><a href="/portfolios.html" class="active">📊 Portfolios</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero-portfolios">
+    <div class="container">
+      <div class="hero-badge" style="display:inline-block; background:rgba(16,185,129,0.1); color:var(--green); padding:0.4rem 1rem; border-radius:100px; font-size:0.85rem; font-weight:700; margin-bottom:1.5rem;">📈 Institutional Grade Tracking</div>
+      <h1>Top Performing<br><span>Portfolios</span></h1>
+      <p class="hero-sub">We reconstruct elite investment strategies using public 13F filings, congressional disclosures, and algorithmic tracking. Follow the smart money, automated.</p>
+    </div>
+  </section>
+
+  <!-- ═══ PORTFOLIOS ═══ -->
+  <section class="portfolios-section">
+    <div class="container">
+
+      <!-- Portfolio 1 -->
+      <div class="portfolio-card">
+        <div class="portfolio-header">
+          <div class="portfolio-title-area">
+            <h2>AI World War III Portfolio</h2>
+            <div class="portfolio-creator">By Dr. Alejandro Lopez Lira · $116M AUM Proxy</div>
+          </div>
+          <div class="portfolio-return">
+            <span class="return-val">+174.5%</span>
+            <span class="return-label">2Y Return</span>
+          </div>
+        </div>
+        <div class="portfolio-strategy">
+          <span class="strategy-title">Strategy</span>
+          <p class="strategy-desc">AI + Defense stocks positioned for geopolitical conflict. This heavy-alpha strategy focuses on the intersection of autonomous systems, specialized hardware, and cybersecurity within the global defense framework.</p>
+        </div>
+        <div class="holdings-container">
+          <table class="holdings-table">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Company Name</th>
+                <th>Allocation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="ticker">PLTR</span></td><td>Palantir Technologies</td><td class="weight">High</td></tr>
+              <tr><td><span class="ticker">LMT</span></td><td>Lockheed Martin</td><td class="weight">High</td></tr>
+              <tr><td><span class="ticker">RTX</span></td><td>RTX Corporation</td><td class="weight">Medium</td></tr>
+              <tr><td><span class="ticker">NVDA</span></td><td>Nvidia Corp</td><td class="weight">Medium</td></tr>
+              <tr><td><span class="ticker">MSFT</span></td><td>Microsoft Corp</td><td class="weight">Medium</td></tr>
+              <tr><td><span class="ticker">NOC</span></td><td>Northrop Grumman</td><td class="weight">Tactical</td></tr>
+              <tr><td><span class="ticker">GD</span></td><td>General Dynamics</td><td class="weight">Tactical</td></tr>
+              <tr><td><span class="ticker">AI</span></td><td>C3.ai Inc</td><td class="weight">Speculative</td></tr>
+              <tr><td><span class="ticker">NET</span></td><td>Cloudflare Inc</td><td class="weight">Core</td></tr>
+              <tr><td><span class="ticker">PANW</span></td><td>Palo Alto Networks</td><td class="weight">Core</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="datasource-note">Data sourced from public 13F filings and strategy publications. All-time return: +220%.</div>
+      </div>
+
+      <!-- Portfolio 2 -->
+      <div class="portfolio-card">
+        <div class="portfolio-header">
+          <div class="portfolio-title-area">
+            <h2>Inverse Cramer</h2>
+            <div class="portfolio-creator">Contrarian Indicator Strategy · $53.4M Proxy</div>
+          </div>
+          <div class="portfolio-return">
+            <span class="return-val">+90.6%</span>
+            <span class="return-label">2Y Return</span>
+          </div>
+        </div>
+        <div class="portfolio-strategy">
+          <span class="strategy-title">Strategy</span>
+          <p class="strategy-desc">A systematic contrarian strategy that shorts or takes inverse positions relative to recommendations made on CNBC Mad Money. While volatile (-22.69% in 2025), the strategy historically generates significant alpha on a multi-year horizon as a sentiment mean-reversion play.</p>
+        </div>
+        <div class="datasource-note">Data sourced from manual tracking of televised recommendations. Reconstructed for educational tracking.</div>
+      </div>
+
+      <!-- Portfolio 3 -->
+      <div class="portfolio-card">
+        <div class="portfolio-header">
+          <div class="portfolio-title-area">
+            <h2>Jim Simons Tracker</h2>
+            <div class="portfolio-creator">Renaissance Technologies 13F Proxy · $91.1M Proxy</div>
+          </div>
+          <div class="portfolio-return">
+            <span class="return-val">+80.2%</span>
+            <span class="return-label">2Y Return</span>
+          </div>
+        </div>
+        <div class="portfolio-strategy">
+          <span class="strategy-title">Strategy</span>
+          <p class="strategy-desc">Mirroring the public filings of the world's most successful hedge fund. This portfolio is ultra-diversified (3,185 holdings) with low concentration. We track the top conviction moves from the latest Q4 2025 filings.</p>
+        </div>
+        <div class="holdings-container">
+          <table class="holdings-table">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Company Name</th>
+                <th>Weight / Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="ticker">PLTR</span></td><td>Palantir Technologies</td><td class="weight">2.43% ($1.56B)</td></tr>
+              <tr><td><span class="ticker">UTHR</span></td><td>United Therapeutics</td><td class="weight">1.40% ($930M)</td></tr>
+              <tr><td><span class="ticker">MU</span></td><td>Micron Technology</td><td>Core Holding</td></tr>
+              <tr><td><span class="ticker">KGC</span></td><td>Kinross Gold</td><td>Core Holding</td></tr>
+              <tr><td><span class="ticker">VRSN</span></td><td>VeriSign</td><td>Core Holding</td></tr>
+              <tr><td><span class="ticker">NVO</span></td><td>Novo Nordisk</td><td>Largest by Shares</td></tr>
+              <tr><td><span class="ticker">AMZN</span></td><td>Amazon.com</td><td class="weight">Top New Buy (Q4 25)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="datasource-note">Data sourced from SEC 13F filings. Top 10 holdings represent 11.59% concentration.</div>
+      </div>
+
+      <!-- Portfolio 4 -->
+      <div class="portfolio-card">
+        <div class="portfolio-header">
+          <div class="portfolio-title-area">
+            <h2>Calacanis Tracker</h2>
+            <div class="portfolio-creator">Public Proxy of Angel Ventures · Early Stage Tracking</div>
+          </div>
+          <div class="portfolio-return">
+            <span class="return-val">+67.1%</span>
+            <span class="return-label">2Y Return</span>
+          </div>
+        </div>
+        <div class="portfolio-strategy">
+          <span class="strategy-title">Strategy</span>
+          <p class="strategy-desc">Tracking public market proxy positions inspired by Jason Calacanis' famous venture investments. While focused on private markets (early Uber, etc.), this tracker uses a public equity basket that correlates with his core investment theses in marketplaces and SaaS. Note: Tracks public market proxy positions only.</p>
+        </div>
+        <div class="datasource-note">Data sourced from public investment disclosures and correlated equity baskets.</div>
+      </div>
+
+      <!-- Portfolio 5 -->
+      <div class="portfolio-card">
+        <div class="portfolio-header">
+          <div class="portfolio-title-area">
+            <h2>Pelosi Tracker+</h2>
+            <div class="portfolio-creator">Congressional Disclosure Tracking · $469.5M Proxy</div>
+          </div>
+          <div class="portfolio-return">
+            <span class="return-val">+59.2%</span>
+            <span class="return-label">2Y Return</span>
+          </div>
+        </div>
+        <div class="portfolio-strategy">
+          <span class="strategy-title">Strategy</span>
+          <p class="strategy-desc">The most popular portfolio tracked globally. Reconstructed from House of Representatives financial disclosure filings. Historically outperforms the S&P 500 significantly (+853% vs +264% since 2014) by focusing on dominant Tech and Semis.</p>
+        </div>
+        <div class="holdings-container">
+          <table class="holdings-table">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Company Name</th>
+                <th>Approx. Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="ticker">NVDA</span></td><td>Nvidia Corp</td><td class="weight">~19%</td></tr>
+              <tr><td><span class="ticker">AVGO</span></td><td>Broadcom Inc</td><td class="weight">~17%</td></tr>
+              <tr><td><span class="ticker">GOOGL</span></td><td>Alphabet Inc</td><td class="weight">~17%</td></tr>
+              <tr><td><span class="ticker">AAPL</span></td><td>Apple Inc</td><td>~8%</td></tr>
+              <tr><td><span class="ticker">PANW</span></td><td>Palo Alto Networks</td><td>~8%</td></tr>
+              <tr><td><span class="ticker">CRM</span></td><td>Salesforce Inc</td><td>Core</td></tr>
+              <tr><td><span class="ticker">TSLA</span></td><td>Tesla Inc</td><td class="weight">Recent Buy</td></tr>
+              <tr><td><span class="ticker">CRWD</span></td><td>CrowdStrike Holdings</td><td>Core</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="datasource-note">Data sourced from official Congressional Financial Disclosures.</div>
+      </div>
+
+      <!-- Disclaimers -->
+      <div class="disclaimer-box">
+        <h3>Important Disclosures</h3>
+        <ul>
+          <li><strong>For educational purposes only.</strong> The information provided on this page does not constitute financial, investment, or legal advice.</li>
+          <li><strong>Data Reconstruction:</strong> Holdings data is reconstructed from public sources including SEC 13F filings and congressional financial disclosures. Actual Autopilot portfolios or industrial funds may differ in weightings, entry prices, and active management.</li>
+          <li><strong>Performance:</strong> Past performance does not guarantee future results. Investment carries inherent risk of loss.</li>
+          <li><strong>Conflict of Interest:</strong> AI Clubhouse may hold positions in securities mentioned above.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer style="text-align:center; padding:2rem; color:#475569; font-size:0.85rem; border-top:1px solid rgba(255,255,255,0.06);">
+    <p>© 2026 AI Clubhouse · <a href="/privacy" style="color:#64748b;">Privacy</a> · <a href="/terms" style="color:#64748b;">Terms</a> · <a href="/affiliate-disclosure" style="color:#64748b;">Disclosure</a></p>
+  </footer>
+
+  <script>
+    // Simple toggle for mobile nav
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
