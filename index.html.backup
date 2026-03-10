@@ -92,20 +92,6 @@
           <div class="number">Weekly</div>
           <div class="label">Expert Guides</div>
         </div>
-
-<div style="background: #f8f9fa; border-radius: 12px; padding: 32px; margin: 32px 0; text-align: center;">
- <h3 style="margin-bottom: 8px;">Free Guide: 10 Best AI Tools for Aussie Businesses</h3>
- <p style="color: #666; margin-bottom: 16px;">Get our curated list with pricing, reviews, and exclusive deals. Delivered straight to your inbox.</p>
- <form action="YOUR_MAILCHIMP_OR_CONVERTKIT_FORM_URL" method="POST"><input type="email" name="email" placeholder="Enter your email" required
- style="padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px; width: 260px; font-size: 16px;">
- <button type="submit"
- style="padding: 12px 24px; background: #2A9D8F; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-left: 8px;">
- Get the Free Guide
- </button>
- </form>
- <p style="font-size: 12px; color: #999; margin-top: 8px;">No spam. Unsubscribe anytime.</p>
-</div>
-
       </div>
     </div>
   </section>
