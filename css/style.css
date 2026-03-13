@@ -794,6 +794,86 @@ button { font-family: inherit; cursor: pointer; }
 .article-content blockquote { border-left: 3px solid var(--accent); padding: 16px 24px; margin: 24px 0; background: var(--bg-card); border-radius: 0 8px 8px 0; color: var(--grey); font-style: italic; }
 .article-content .affiliate-box { background: var(--bg-card); border: 1px solid var(--accent); border-radius: var(--radius); padding: 24px; margin: 32px 0; text-align: center; }
 
+/* ─── CUSTOM CURSOR ─── */
+.custom-cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s var(--ease);
+  mix-blend-mode: difference;
+}
+.custom-cursor.cursor-hover {
+  width: 64px;
+  height: 64px;
+  border-color: var(--accent);
+}
+.custom-cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+}
+@media (pointer: coarse) {
+  .custom-cursor, .custom-cursor-dot { display: none; }
+}
+
+/* ─── MARQUEE TICKER ─── */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.marquee-inner {
+  display: inline-flex;
+  gap: 60px;
+  animation: marquee-scroll 25s linear infinite;
+}
+.marquee-inner span {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grey-dark);
+}
+.marquee-inner .accent-word { color: var(--accent); }
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── TEXT LINE REVEAL ─── */
+.text-reveal .word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.text-reveal .word {
+  display: inline-block;
+  animation: word-rise 0.6s var(--ease) both;
+}
+@keyframes word-rise {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ─── CARD TILT (overrides) ─── */
+.tool-card, .blog-card, .panel {
+  transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
   .split {
