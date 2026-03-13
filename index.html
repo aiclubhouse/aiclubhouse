@@ -46,6 +46,8 @@
   </script>
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- ═══ HEADER ═══ -->
   <header class="site-header">
     <div class="nav-inner">
@@ -63,15 +65,16 @@
     </div>
   </header>
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero">
+  
+  <!-- ═══ CINEMATIC HERO ═══ -->
+  <section class="cinematic-hero">
     <div class="container">
       <div class="hero-badge">🚀 Australia's #1 AI Community Hub</div>
       <h1>
         Where <span class="gradient-text">AI</span> Meets<br>
         <span class="gradient-text">Community</span>
       </h1>
-      <p>
+      <p class="hero-subtitle">
         Cut through the noise. We test, review, and recommend the best AI tools so you don't have to. 
         Join thousands of creators, marketers, and entrepreneurs building with AI.
       </p>
@@ -92,32 +95,19 @@
           <div class="number">Weekly</div>
           <div class="label">Expert Guides</div>
         </div>
-
-<div style="background: #f8f9fa; border-radius: 12px; padding: 32px; margin: 32px 0; text-align: center;">
- <h3 style="margin-bottom: 8px;">Free Guide: 10 Best AI Tools for Aussie Businesses</h3>
- <p style="color: #666; margin-bottom: 16px;">Get our curated list with pricing, reviews, and exclusive deals. Delivered straight to your inbox.</p>
- <form action="YOUR_MAILCHIMP_OR_CONVERTKIT_FORM_URL" method="POST"><input type="email" name="email" placeholder="Enter your email" required
- style="padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px; width: 260px; font-size: 16px;">
- <button type="submit"
- style="padding: 12px 24px; background: #2A9D8F; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-left: 8px;">
- Get the Free Guide
- </button>
- </form>
- <p style="font-size: 12px; color: #999; margin-top: 8px;">No spam. Unsubscribe anytime.</p>
-</div>
-
       </div>
     </div>
   </section>
 
-  <!-- ═══ FEATURED TOOLS ═══ -->
-  <section class="section" id="tools">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag">🏆 Top Picks</div>
-        <h2>Best AI Tools — Tested & Recommended</h2>
-        <p>Every tool reviewed by our team. Real tests, real results, honest opinions.</p>
-      </div>
+  <!-- ═══ SPLIT‑SCREEN: AI TOOLS ═══ -->
+  <section class="split-screen" id="tools">
+    <div class="split-content">
+      <div class="tag">🏆 Top Picks</div>
+      <h2>Best AI Tools — Tested & Recommended</h2>
+      <p>Every tool reviewed by our team. Real tests, real results, honest opinions.</p>
+      <a href="/blog/" class="btn-secondary">View All 50+ AI Tools →</a>
+    </div>
+    <div class="split-visual">
       <div class="tools-grid">
 
         <!-- Tool 1: Jasper -->
@@ -128,109 +118,12 @@
               <h3>Jasper AI</h3>
               <div class="category">Content Generation</div>
             </div>
-          </div>
-          <p>The gold standard for AI copywriting. Generates blog posts, ads, emails, and social content at scale. Perfect for marketers who need quality output fast.</p>
-          <div class="tool-card-footer">
-            <div class="tool-rating">⭐ 4.8/5</div>
-            <a href="https://jasper.ai?fpr=aiclubhouse" class="tool-cta" target="_blank" rel="nofollow sponsored">Try Free →</a>
-          </div>
-        </div>
-
-        <!-- Tool 2: Semrush -->
-        <div class="tool-card">
-          <div class="tool-card-header">
-            <div class="tool-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4);">📊</div>
-            <div>
-              <h3>Semrush</h3>
-              <div class="category">SEO & Marketing</div>
-            </div>
-          </div>
-          <p>All-in-one SEO toolkit with AI-powered content optimization, keyword research, competitor analysis, and rank tracking. Essential for any serious marketer.</p>
-          <div class="tool-card-footer">
-            <div class="tool-rating">⭐ 4.9/5</div>
-            <a href="https://semrush.com/lp/affiliate?ref=aiclubhouse" class="tool-cta" target="_blank" rel="nofollow sponsored">Try Free →</a>
-          </div>
-        </div>
-
-        <!-- Tool 3: GetResponse -->
-        <div class="tool-card">
-          <div class="tool-card-header">
-            <div class="tool-icon" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);">📧</div>
-            <div>
-              <h3>GetResponse</h3>
-              <div class="category">Email Marketing & AI</div>
-            </div>
-          </div>
-          <p>AI-powered email marketing with smart automation, landing pages, webinars, and conversion funnels. Build and nurture your audience on autopilot.</p>
-          <div class="tool-card-footer">
-            <div class="tool-rating">⭐ 4.7/5</div>
-            <a href="https://getresponse.com?a=aiclubhouse" class="tool-cta" target="_blank" rel="nofollow sponsored">Try Free →</a>
-          </div>
-        </div>
-
-        <!-- Tool 4: Synthesia -->
-        <div class="tool-card">
-          <div class="tool-card-header">
-            <div class="tool-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">🎬</div>
-            <div>
-              <h3>Synthesia</h3>
-              <div class="category">AI Video Creation</div>
-            </div>
-          </div>
-          <p>Create professional AI videos with realistic avatars in minutes. No camera, no actors, no studio. 150+ languages. Used by 50,000+ companies worldwide.</p>
-          <div class="tool-card-footer">
-            <div class="tool-rating">⭐ 4.7/5</div>
-            <a href="https://synthesia.io?via=aiclubhouse" class="tool-cta" target="_blank" rel="nofollow sponsored">Try Free →</a>
-          </div>
-        </div>
-
-        <!-- Tool 5: Writesonic -->
-        <div class="tool-card">
-          <div class="tool-card-header">
-            <div class="tool-icon" style="background:linear-gradient(135deg,#06b6d4,#3b82f6);">📝</div>
-            <div>
-              <h3>Writesonic</h3>
-              <div class="category">AI Writing Assistant</div>
-            </div>
-          </div>
-          <p>GPT-4 powered writing tool that creates SEO-optimized content, articles, product descriptions, and more. Built-in fact-checking and plagiarism detection.</p>
-          <div class="tool-card-footer">
-            <div class="tool-rating">⭐ 4.6/5</div>
-            <a href="https://writesonic.com?ref=aiclubhouse" class="tool-cta" target="_blank" rel="nofollow sponsored">Try Free →</a>
-          </div>
-        </div>
-
-        <!-- Tool 6: HubSpot -->
-        <div class="tool-card">
-          <div class="tool-card-header">
-            <div class="tool-icon" style="background:linear-gradient(135deg,#f59e0b,#10b981);">🤝</div>
-            <div>
-              <h3>HubSpot</h3>
-              <div class="category">CRM & Marketing Automation</div>
-            </div>
-          </div>
-          <p>Complete CRM platform with AI-powered marketing, sales, and service tools. Free tier available. Perfect for growing businesses that want everything in one place.</p>
-          <div class="tool-card-footer">
-            <div class="tool-rating">⭐ 4.8/5</div>
-            <a href="https://hubspot.com?via=aiclubhouse" class="tool-cta" target="_blank" rel="nofollow sponsored">Start Free →</a>
-          </div>
-        </div>
-
-      </div>
-      <div style="text-align:center; margin-top:40px;">
-        <a href="/blog/" class="btn-secondary">View All 50+ AI Tools →</a>
-      </div>
     </div>
   </section>
 
-  <!-- ═══ WHY AI CLUBHOUSE ═══ -->
-  <section class="section" style="background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag">💡 Why Us</div>
-        <h2>Not Just Reviews — Real Community</h2>
-        <p>We don't just list tools. We test them, compare them, and help you pick the right one for YOUR use case.</p>
-      </div>
+  <!-- ═══ SPLIT‑SCREEN REVERSE: WHY US ═══ -->
+  <section class="split-screen reverse" style="background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="split-visual">
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🔬</div>
@@ -264,9 +157,15 @@
         </div>
       </div>
     </div>
+    <div class="split-content">
+      <div class="tag">💡 Why Us</div>
+      <h2>Not Just Reviews — Real Community</h2>
+      <p>We don't just list tools. We test them, compare them, and help you pick the right one for YOUR use case.</p>
+      <a href="#newsletter" class="btn-primary">Join the Community →</a>
+    </div>
   </section>
 
-  <!-- ═══ BLOG ═══ -->
+  <!-- ═══ INTERACTIVE GRID: BLOG ═══ -->
   <section class="section" id="blog">
     <div class="container">
       <div class="section-header">
@@ -274,7 +173,8 @@
         <h2>AI Tutorials, Guides & News</h2>
         <p>Practical content to help you get the most out of AI tools in your business.</p>
       </div>
-      <div class="blog-grid">
+      <div class="interactive-grid">
+        <div class="blog-grid">
 
         <article class="blog-card">
           <div class="blog-card-img" style="background:linear-gradient(135deg,#1e3a5f,#3b82f6); display:flex; align-items:center; justify-content:center; font-size:3rem;">🤖</div>
@@ -366,18 +266,25 @@
         <a href="/blog/" class="btn-secondary">View All Articles →</a>
       </div>
     </div>
+      </div>
+      <div style="text-align:center; margin-top:40px;">
+        <a href="/blog/" class="btn-secondary">View All Articles →</a>
+      </div>
+    </div>
   </section>
 
-  <!-- ═══ COMPARISON TABLE ═══ -->
-  <section class="section" style="background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <!-- ═══ PARALLAX: COMPARISON TABLE ═══ -->
+  <section class="parallax-section parallax-container">
+    <div class="parallax-bg parallax-layer" style="background-image: url('/img/banner.svg'); transform: translateZ(0);" data-depth="0.2"></div>
+    <div class="parallax-layer" style="background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15), transparent 50%); transform: translateZ(0.5);" data-depth="0.5"></div>
+    <div class="parallax-layer" style="background: radial-gradient(circle at 70% 20%, rgba(139, 92, 246, 0.1), transparent 50%); transform: translateZ(0.8);" data-depth="0.8"></div>
     <div class="container">
       <div class="section-header">
         <div class="tag">⚔️ Head-to-Head</div>
         <h2>AI Writing Tools Compared</h2>
         <p>Quick-reference comparison of the top AI content tools.</p>
       </div>
-      <div style="overflow-x:auto;">
-        <table class="comparison-table">
+      <table class="comparison-table">
           <thead>
             <tr>
               <th>Tool</th>
@@ -431,11 +338,10 @@
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
   </section>
 
-  <!-- ═══ COMMUNITY ═══ -->
+  <!-- ═══ TRI‑PANEL: COMMUNITY ═══ -->
   <section class="section" id="community">
     <div class="container">
       <div class="section-header">
@@ -443,8 +349,8 @@
         <h2>The AI Clubhouse Community</h2>
         <p>Connect with creators, marketers, and entrepreneurs who are building with AI every day.</p>
       </div>
-      <div class="features-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
-        <div class="feature-card">
+      <div class="tri-panel">
+        <div class="panel">
           <div class="feature-icon">💬</div>
           <h3>Discord Community</h3>
           <p>Chat with fellow AI enthusiasts, share your wins, get feedback on your AI workflows, and discover new tools daily.</p>
@@ -452,7 +358,7 @@
             <a href="#" class="btn-primary" style="font-size:0.9rem; padding:10px 24px;">Join Discord →</a>
           </div>
         </div>
-        <div class="feature-card">
+        <div class="panel">
           <div class="feature-icon">📬</div>
           <h3>Weekly Newsletter</h3>
           <p>Every Saturday: curated AI tool launches, trending tutorials, community highlights, and exclusive deals. Free forever.</p>
@@ -460,7 +366,7 @@
             <a href="#newsletter" class="btn-primary" style="font-size:0.9rem; padding:10px 24px;">Subscribe Free →</a>
           </div>
         </div>
-        <div class="feature-card">
+        <div class="panel">
           <div class="feature-icon">🎓</div>
           <h3>AI Masterclass (Coming Soon)</h3>
           <p>In-depth video courses on using AI tools to grow your business. From prompting to full automation. Launching Q2 2026.</p>
@@ -485,7 +391,7 @@
     </div>
   </section>
 
-  <!-- ═══ FOOTER ═══ -->
+<!-- ═══ FOOTER ═══ -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -532,5 +438,5 @@
   </footer>
 
   <script src="js/main.js"></script>
+
 </body>
-</html>

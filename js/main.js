@@ -131,6 +131,54 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       lastScroll = currentScroll;
     });
+
+    // Scroll progress bar
+    const scrollProgress = document.getElementById('scrollProgress');
+    if (scrollProgress) {
+      window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + '%';
+      });
+    }
+
+    // Add hover‑lift class to interactive cards
+    document.querySelectorAll('.tool-card, .blog-card, .feature-card, .panel, .interactive-card').forEach(card => {
+      card.classList.add('hover-lift');
+    });
+
+    // Pulse animation on CTAs (buttons)
+    const pulseButtons = document.querySelectorAll('.btn-primary, .nav-cta');
+    pulseButtons.forEach(btn => {
+      btn.classList.add('pulse');
+    });
+
+    // Mouse parallax effect for parallax containers
+    const parallaxContainers = document.querySelectorAll('.parallax-container');
+    if (parallaxContainers.length && window.innerWidth > 768) {
+      document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 20 - 10;
+        const y = (e.clientY / window.innerHeight) * 20 - 10;
+        parallaxContainers.forEach(container => {
+          const layers = container.querySelectorAll('.parallax-layer');
+          layers.forEach((layer, i) => {
+            const depth = (i + 1) * 0.5;
+            layer.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+          });
+        });
+      });
+    }
+
+    // Staggered fade‑up for grid items
+    const staggerGrids = document.querySelectorAll('.tools-grid, .features-grid, .interactive-grid');
+    staggerGrids.forEach(grid => {
+      grid.classList.add('stagger-child');
+    });
+
+    // Console greeting
+    console.log('%c🚀 AI Clubhouse — Interactive & Bold', 'font-size: 18px; font-weight: bold; color: #3b82f6;');
+    console.log('%cWhere AI Meets Community', 'font-size: 14px; color: #94a3b8;');
   } catch (err) {
     console.error('[AI Clubhouse] Initialization error:', err);
   }

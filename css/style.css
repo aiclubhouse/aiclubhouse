@@ -350,6 +350,246 @@ img { max-width: 100%; height: auto; }
   transform: translateY(0) !important;
 }
 
+/* ─── LANDO‑NORRIS STYLE COMPONENTS ─── */
+/* Split‑screen layout */
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  min-height: 80vh;
+  padding: 120px 24px;
+}
+.split-screen.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+.split-screen .split-content {
+  position: relative;
+  z-index: 2;
+}
+.split-screen .split-visual {
+  position: relative;
+}
+.split-screen h2 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.split-screen p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+/* Cinematic hero */
+.cinematic-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 160px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.cinematic-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+  z-index: -1;
+}
+.cinematic-hero h1 {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+.cinematic-hero .hero-subtitle {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Interactive card grid */
+.interactive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+.interactive-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.interactive-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-1);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.interactive-card:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-8px);
+}
+.interactive-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Parallax section */
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+  padding: 160px 24px;
+}
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* Scroll‑reveal animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tri‑panel layout */
+.tri-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.tri-panel .panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.tri-panel .panel:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+/* ─── INTERACTIVE ENHANCEMENTS ─── */
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--gradient-1);
+  z-index: 1000;
+  transition: width 0.1s ease;
+}
+
+/* Pulse animation for CTAs */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+  50% { box-shadow: 0 0 40px var(--accent-glow); }
+}
+.pulse {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Hover lift with glow */
+.hover-lift {
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.25);
+}
+
+/* Mouse parallax container */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Staggered fade‑up */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.stagger-child > * {
+  opacity: 0;
+  animation: fade-up 0.6s ease forwards;
+}
+.stagger-child > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-child > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-child > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-child > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-child > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-child > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Animated gradient background */
+.animated-gradient {
+  background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive for Lando components */
+@media (max-width: 1024px) {
+  .split-screen {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 80px 24px;
+  }
+  .tri-panel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   .nav-links { display: none; }
