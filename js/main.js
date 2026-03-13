@@ -203,8 +203,23 @@ document.addEventListener('DOMContentLoaded', () => {
       counterElements.forEach(el => counterObserver.observe(el));
     }
 
+    // Scroll‑to‑top button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    if (scrollTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
+        }
+      });
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     // Console greeting
-    console.log('%c🚀 AI Clubhouse — Interactive & Bold', 'font-size: 18px; font-weight: bold; color: #3b82f6;');
+    console.log('%c🚀 AI Clubhouse — Interactive & Bold', 'font-size: 18px; font-weight: bold; color: #3b82f8;');
     console.log('%cWhere AI Meets Community', 'font-size: 14px; color: #94a3b8;');
   } catch (err) {
     console.error('[AI Clubhouse] Initialization error:', err);

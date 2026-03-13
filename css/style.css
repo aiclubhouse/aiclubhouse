@@ -577,6 +577,35 @@ img { max-width: 100%; height: auto; }
   100% { background-position: 0% 50%; }
 }
 
+/* Scroll‑to‑top button */
+.scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient-1);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+  z-index: 999;
+}
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-top:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
 /* Responsive for Lando components */
 @media (max-width: 1024px) {
   .split-screen {
