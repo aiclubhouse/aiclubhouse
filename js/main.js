@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    console.log('%c⚡ AI CLUBHOUSE', 'font-size:24px;font-weight:900;color:#c8ff00;background:#1a1e14;padding:8px 16px;border-radius:8px;');
+    console.log('%c⚡ AI CLUBHOUSE', 'font-size:24px;font-weight:900;color:#a855f7;background:#0c0b12;padding:8px 16px;border-radius:8px;');
 
   } catch (err) {
     console.error('[AIC] Init:', err);
