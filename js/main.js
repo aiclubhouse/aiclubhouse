@@ -176,6 +176,33 @@ document.addEventListener('DOMContentLoaded', () => {
       grid.classList.add('stagger-child');
     });
 
+    // Animated counters
+    const counterElements = document.querySelectorAll('.number.countable');
+    if (counterElements.length && 'IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const count = parseInt(el.getAttribute('data-count'));
+            const suffix = el.getAttribute('data-suffix') || '';
+            const duration = 1500; // ms
+            const step = Math.ceil(count / (duration / 16));
+            let current = 0;
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= count) {
+                current = count;
+                clearInterval(timer);
+              }
+              el.textContent = current + suffix;
+            }, 16);
+            counterObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      counterElements.forEach(el => counterObserver.observe(el));
+    }
+
     // Console greeting
     console.log('%c🚀 AI Clubhouse — Interactive & Bold', 'font-size: 18px; font-weight: bold; color: #3b82f6;');
     console.log('%cWhere AI Meets Community', 'font-size: 14px; color: #94a3b8;');
