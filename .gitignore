@@ -11,4 +11,9 @@ Thumbs.db
 
 # Build outputs
 _site/
-dist/
+dist/index.html.backup*
+index.html.lando-backup
+index.html.original-redesign-backup
+oldbody.txt
+rebuild.py
+css/style.css.lando-backup
