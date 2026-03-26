@@ -2,6 +2,39 @@
 
 window.addEventListener('error', (e) => console.error('[AIC]', e.error));
 
+// Email capture function (for newsletter form)
+function captureEmail(event) {
+  event.preventDefault();
+  const form = event.target;
+  const emailInput = form.querySelector('input[type="email"]');
+  const email = emailInput.value.trim();
+  
+  if (!email) return false;
+  
+  // Store email in localStorage for now (will be collected later)
+  try {
+    const emails = JSON.parse(localStorage.getItem('aiclubhouse_emails') || '[]');
+    emails.push({ email, timestamp: new Date().toISOString() });
+    localStorage.setItem('aiclubhouse_emails', JSON.stringify(emails));
+    console.log('Email captured:', email);
+    
+    // Also log to console for collection
+    console.log(`New subscriber: ${email} - Total: ${emails.length}`);
+    
+    // Submit the form normally (redirects to thank you page)
+    setTimeout(() => {
+      form.submit();
+    }, 500);
+    
+  } catch (err) {
+    console.error('Error saving email:', err);
+    // Still submit form to thank you page
+    form.submit();
+  }
+  
+  return false;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   try {
 
